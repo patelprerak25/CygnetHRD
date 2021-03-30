@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CygnetHRD.WebAPI", "CygnetHRD.WebAPI\CygnetHRD.WebAPI.csproj", "{135D16FA-079D-4F55-85D7-71080177A19E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CygnetHRD.Entity", "CygnetHRD.Entity\CygnetHRD.Entity.csproj", "{C605E93F-8319-4446-82F2-78ADD3E0A192}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CygnetHRD.Application", "CygnetHRD.Application\CygnetHRD.Application.csproj", "{C8A897B3-16C5-4EC9-986B-DF303800C1A3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CygnetHRD.Repository", "CygnetHRD.Repository\CygnetHRD.Repository.csproj", "{CD6B8E12-7926-4A71-9239-8EF45E1E9381}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6271C380-1A4E-4306-854B-E0336D078705}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{135D16FA-079D-4F55-85D7-71080177A19E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{135D16FA-079D-4F55-85D7-71080177A19E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{135D16FA-079D-4F55-85D7-71080177A19E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{135D16FA-079D-4F55-85D7-71080177A19E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C605E93F-8319-4446-82F2-78ADD3E0A192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C605E93F-8319-4446-82F2-78ADD3E0A192}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C605E93F-8319-4446-82F2-78ADD3E0A192}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C605E93F-8319-4446-82F2-78ADD3E0A192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8A897B3-16C5-4EC9-986B-DF303800C1A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8A897B3-16C5-4EC9-986B-DF303800C1A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8A897B3-16C5-4EC9-986B-DF303800C1A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8A897B3-16C5-4EC9-986B-DF303800C1A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD6B8E12-7926-4A71-9239-8EF45E1E9381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD6B8E12-7926-4A71-9239-8EF45E1E9381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD6B8E12-7926-4A71-9239-8EF45E1E9381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD6B8E12-7926-4A71-9239-8EF45E1E9381}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E57E0BF-1549-4624-A21E-9F32ECD50362}
+	EndGlobalSection
+EndGlobal

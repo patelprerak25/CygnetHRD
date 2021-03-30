@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CygnetHRD.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:CygnetHRD.WebAPI.Controllers.UserController">
+            <summary>
+            This is the User controller class which having all CRUD method related to User entity.
+            </summary>
+        </member>
+        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.#ctor(CygnetHRD.Application.Interfaces.IUnitOfWork)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CygnetHRD.WebAPI.Controllers.UserController"/> class.
+            Public constructor to initialize UnitOfWork instance.
+            </summary>
+            <param name="unitOfWork">IUnitOfWork</param>
+        </member>
+        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.GetAll">
+            <summary>
+            This method use for featching all Users.
+            </summary>
+            <returns>List of User.</returns>
+            <example>GET ../api/user</example>
+        </member>
+        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.GetById(System.Int32)">
+            <summary>
+            API call for get User entity by ID.
+            </summary>
+            <param name="id">int : User id.</param>
+            <returns>User : User entity object.</returns>
+            <example>GET ../api/user/2 .</example>
+        </member>
+        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.Add(CygnetHRD.Core.Entities.User)">
+            <summary>
+            API call for add new User entity.
+            </summary>
+            <param name="user">User : User enity object.</param>
+            <returns>int : 1 for success and 0 for fail add status.</returns>
+            <example>POST ../api/user .</example>
+        </member>
+        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.Delete(System.Int32)">
+            <summary>
+            API call for delete User entity by ID.
+            </summary>
+            <param name="id">int : User id.</param>
+            <returns>int : 1 for success and 0 for fail delete status.</returns>
+            <example>DELETE ../api/user .</example>
+        </member>
+        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.Update(CygnetHRD.Core.Entities.User)">
+            <summary>
+            API call for update User entity.
+            </summary>
+            <param name="user">User</param>
+            <returns>int : 1 for success and 0 for fail update status.</returns>
+            <example>PUT ../api/user .</example>
+        </member>
+        <member name="T:CygnetHRD.WebAPI.Program">
+            <summary>
+            Startup class for WebAPI.
+            </summary>
+        </member>
+        <member name="M:CygnetHRD.WebAPI.Program.Main(System.String[])">
+            <summary>
+            This metod call first when web api call.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:CygnetHRD.WebAPI.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            This method use for configure Host and call startup class.
+            </summary>
+            <param name="args">string[] : list name of arguments.</param>
+            <returns>IHostBuilder</returns>
+        </member>
+        <member name="T:CygnetHRD.WebAPI.Startup">
+            <summary>
+            This class is executed first when the application starts.
+            </summary>
+        </member>
+        <member name="M:CygnetHRD.WebAPI.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Public constructor to initialize IConfiguration instance.
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:CygnetHRD.WebAPI.Startup.Configuration">
+            <summary>
+            Getter method for provide IConfiguration object to other class or assembly.
+            </summary>
+        </member>
+        <member name="M:CygnetHRD.WebAPI.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services">IServiceCollection</param>
+        </member>
+        <member name="M:CygnetHRD.WebAPI.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app">IApplicationBuilder</param>
+            <param name="env">IWebHostEnvironment</param>
+        </member>
+    </members>
+</doc>
