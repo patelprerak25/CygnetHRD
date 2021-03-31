@@ -22,6 +22,7 @@
             </summary>
             <returns>List of User.</returns>
             <example>GET ../api/user</example>
+            <example>GET ../api/user/all</example>
         </member>
         <member name="M:CygnetHRD.WebAPI.Controllers.UserController.GetById(System.Int32)">
             <summary>
@@ -37,7 +38,9 @@
             </summary>
             <param name="user">User : User enity object.</param>
             <returns>int : 1 for success and 0 for fail add status.</returns>
-            <example>POST ../api/user .</example>
+            <example>POST ../api/user</example>
+            <example>POST ../api/user/create</example>
+            <example>POST ../api/user/register</example>
         </member>
         <member name="M:CygnetHRD.WebAPI.Controllers.UserController.Delete(System.Int32)">
             <summary>
@@ -45,7 +48,9 @@
             </summary>
             <param name="id">int : User id.</param>
             <returns>int : 1 for success and 0 for fail delete status.</returns>
-            <example>DELETE ../api/user .</example>
+            <example>DELETE ../api/user/1</example>
+            <example>DELETE ../api/user/remove/1</example>
+            <example>DELETE ../api/user/delete/1</example>
         </member>
         <member name="M:CygnetHRD.WebAPI.Controllers.UserController.Update(CygnetHRD.Core.Entities.User)">
             <summary>

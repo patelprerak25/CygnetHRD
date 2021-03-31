@@ -32,7 +32,9 @@
         /// </summary>
         /// <returns>List of User.</returns>
         /// <example>GET ../api/user</example>
+        /// <example>GET ../api/user/all</example>
         [HttpGet]
+        [HttpPost("all")]
         public async Task<IActionResult> GetAll()
         {
             var data = await this.unitOfWork.Users.GetAllAsync();
@@ -40,7 +42,6 @@
                 return this.Ok(data);
             else
                 return this.NotFound("User doesn't exist.");
-
         }
 
         /// <summary>
@@ -66,12 +67,21 @@
         /// </summary>
         /// <param name="user">User : User enity object.</param>
         /// <returns>int : 1 for success and 0 for fail add status.</returns>
-        /// <example>POST ../api/user .</example>
+        /// <example>POST ../api/user</example>
+        /// <example>POST ../api/user/create</example>
+        /// <example>POST ../api/user/register</example>
         [HttpPost]
+        [HttpPost("create")]
+        [HttpPost("register")]
         public async Task<IActionResult> Add(User user)
         {
-            var data = await this.unitOfWork.Users.AddAsync(user);
-            return this.Ok(data);
+            if (user != null)
+            {
+                var data = await this.unitOfWork.Users.AddAsync(user);
+                return this.Ok(data);
+            }
+            else
+                return this.BadRequest();
         }
 
         /// <summary>
@@ -79,12 +89,21 @@
         /// </summary>
         /// <param name="id">int : User id.</param>
         /// <returns>int : 1 for success and 0 for fail delete status.</returns>
-        /// <example>DELETE ../api/user .</example>
+        /// <example>DELETE ../api/user/1</example>
+        /// <example>DELETE ../api/user/remove/1</example>
+        /// <example>DELETE ../api/user/delete/1</example>
         [HttpDelete]
+        [HttpDelete("remove/{id}")]
+        [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var data = await this.unitOfWork.Users.DeleteAsync(id);
-            return this.Ok(data);
+            if (id > 0)
+            {
+                var data = await this.unitOfWork.Users.DeleteAsync(id);
+                return this.Ok(data);
+            }
+            else
+                return this.NotFound();
         }
 
         /// <summary>
@@ -94,10 +113,17 @@
         /// <returns>int : 1 for success and 0 for fail update status.</returns>
         /// <example>PUT ../api/user .</example>
         [HttpPut]
+        [HttpPut("update")]
+        [HttpPut("modify")]
         public async Task<IActionResult> Update(User user)
         {
-            var data = await this.unitOfWork.Users.UpdateAsync(user);
-            return this.Ok(data);
+            if (user != null)
+            {
+                var data = await this.unitOfWork.Users.UpdateAsync(user);
+                return this.Ok(data);
+            }
+            else
+                return this.BadRequest();
         }
     }
 }
