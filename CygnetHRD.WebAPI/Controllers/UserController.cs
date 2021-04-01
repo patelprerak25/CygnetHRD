@@ -1,18 +1,21 @@
-﻿namespace CygnetHRD.WebAPI.Controllers
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using CygnetHRD.Application.Interfaces;
+using CygnetHRD.Entity.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace CygnetHRD.WebAPI.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using CygnetHRD.Application.Interfaces;
-    using CygnetHRD.Core.Entities;
-    using Microsoft.AspNetCore.Mvc;
 
     /// <summary>
     /// This is the User controller class which having all CRUD method related to User entity.
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
@@ -34,11 +37,12 @@
         /// <example>GET ../api/user</example>
         /// <example>GET ../api/user/all</example>
         [HttpGet]
-        [HttpPost("all")]
+        [HttpGet("all")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
             var data = await this.unitOfWork.Users.GetAllAsync();
-            if (data.Count > 0)
+            if (data.Count() > 0)
                 return this.Ok(data);
             else
                 return this.NotFound("User doesn't exist.");
@@ -111,7 +115,9 @@
         /// </summary>
         /// <param name="user">User</param>
         /// <returns>int : 1 for success and 0 for fail update status.</returns>
-        /// <example>PUT ../api/user .</example>
+        /// <example>PUT ../api/user</example>
+        /// <example>PUT ../api/user/update</example>
+        /// <example>PUT ../api/user/modify</example>
         [HttpPut]
         [HttpPut("update")]
         [HttpPut("modify")]

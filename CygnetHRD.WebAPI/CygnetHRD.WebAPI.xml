@@ -4,6 +4,28 @@
         <name>CygnetHRD.WebAPI</name>
     </assembly>
     <members>
+        <member name="T:CygnetHRD.WebAPI.Controllers.LoginController">
+            <summary>
+            Login contoller class to provide Login feature which can create token and send back to user.
+            Also provide feature of validation of token send by user.
+            </summary>
+        </member>
+        <member name="M:CygnetHRD.WebAPI.Controllers.LoginController.#ctor(CygnetHRD.Application.Interfaces.IUnitOfWork,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CygnetHRD.WebAPI.Controllers.LoginController"/> class.
+            Public constructor to initialize UnitOfWork instance.
+            </summary>
+            <param name="unitOfWork">IUnitOfWork</param>
+            <param name="configuration">IConfiguration</param>
+        </member>
+        <member name="M:CygnetHRD.WebAPI.Controllers.LoginController.Login(CygnetHRD.Entity.Entities.Login)">
+            <summary>
+            This action method used for Login feature.
+            It use User inforamtion and creates token and send back to user.
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
         <member name="T:CygnetHRD.WebAPI.Controllers.UserController">
             <summary>
             This is the User controller class which having all CRUD method related to User entity.
@@ -32,7 +54,7 @@
             <returns>User : User entity object.</returns>
             <example>GET ../api/user/2 .</example>
         </member>
-        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.Add(CygnetHRD.Core.Entities.User)">
+        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.Add(CygnetHRD.Entity.Entities.User)">
             <summary>
             API call for add new User entity.
             </summary>
@@ -52,13 +74,15 @@
             <example>DELETE ../api/user/remove/1</example>
             <example>DELETE ../api/user/delete/1</example>
         </member>
-        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.Update(CygnetHRD.Core.Entities.User)">
+        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.Update(CygnetHRD.Entity.Entities.User)">
             <summary>
             API call for update User entity.
             </summary>
             <param name="user">User</param>
             <returns>int : 1 for success and 0 for fail update status.</returns>
-            <example>PUT ../api/user .</example>
+            <example>PUT ../api/user</example>
+            <example>PUT ../api/user/update</example>
+            <example>PUT ../api/user/modify</example>
         </member>
         <member name="T:CygnetHRD.WebAPI.Program">
             <summary>

@@ -15,6 +15,7 @@ namespace CygnetHRD.Infrastructure
         {
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            
         }
     }
 }

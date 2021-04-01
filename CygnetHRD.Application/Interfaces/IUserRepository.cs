@@ -1,4 +1,4 @@
-﻿using CygnetHRD.Core.Entities;
+﻿using CygnetHRD.Entity.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

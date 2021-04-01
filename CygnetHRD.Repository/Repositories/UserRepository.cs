@@ -1,5 +1,5 @@
 ﻿using CygnetHRD.Application.Interfaces;
-using CygnetHRD.Core.Entities;
+using CygnetHRD.Entity.Entities;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -23,7 +23,6 @@ namespace CygnetHRD.Infrastructure.Repositories
 
         public async Task<int> AddAsync(User entity)
         {
-            //entity.AddedOn = DateTime.Now;
             var sql = "Insert into Users (FirstName,LastName,DateOfBirth,Email,Password) VALUES (@FirstName,@LastName,@DateOfBirth,@Email,@Password)";
             using (var connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection")))
             {
@@ -68,7 +67,6 @@ namespace CygnetHRD.Infrastructure.Repositories
 
         public async Task<int> UpdateAsync(User entity)
         {
-            //entity.ModifiedOn = DateTime.Now;
             var sql = "Update Users set FirstName = @FirstName, LastName = @LastName, DateOfBirth = @DateOfBirth, Email = @Email, Password = @Password  WHERE Id = @Id";
             using (var connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection")))
             {

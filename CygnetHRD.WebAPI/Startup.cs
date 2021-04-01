@@ -1,4 +1,6 @@
+using CygnetHRD.Application.Interfaces;
 using CygnetHRD.Infrastructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -6,10 +8,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace CygnetHRD.WebAPI
@@ -39,6 +43,22 @@ namespace CygnetHRD.WebAPI
         /// <param name="services">IServiceCollection</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            //add authoentication settings for jwt token implementation
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidateAudience = true,
+                            ValidateLifetime = true,
+                            ValidateIssuerSigningKey = true,
+                            ValidIssuer = Configuration["Jwt:Issuer"],
+                            ValidAudience = Configuration["Jwt:Audience"],
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                        };
+                    });
+
             services.AddServices();
             services.AddControllers();
 
@@ -47,6 +67,7 @@ namespace CygnetHRD.WebAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CygnetHRD.WebAPI", Version = "v1" });
             });
         }
+
 
         /// <summary>
         /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,7 +85,8 @@ namespace CygnetHRD.WebAPI
 
             app.UseRouting();
 
-            app.UseAuthorization();         
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
