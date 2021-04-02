@@ -26,6 +26,13 @@
             <param name="user"></param>
             <returns></returns>
         </member>
+        <member name="M:CygnetHRD.WebAPI.Controllers.LoginController.GenerateToken(System.String)">
+            <summary>
+            Generate token on basis of given user information.
+            </summary>
+            <param name="username">string</param>
+            <returns></returns>
+        </member>
         <member name="T:CygnetHRD.WebAPI.Controllers.UserController">
             <summary>
             This is the User controller class which having all CRUD method related to User entity.

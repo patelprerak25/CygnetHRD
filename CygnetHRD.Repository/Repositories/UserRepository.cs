@@ -21,57 +21,52 @@ namespace CygnetHRD.Infrastructure.Repositories
             this.configuration = _configuration;
         }
 
-        public async Task<int> AddAsync(User entity)
+        public async Task<int?> AddAsync(User entity)
         {
-            var sql = "Insert into Users (FirstName,LastName,DateOfBirth,Email,Password) VALUES (@FirstName,@LastName,@DateOfBirth,@Email,@Password)";
             using (var connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection")))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(sql, entity);
+                var result = await connection.InsertAsync(entity);
                 return result;
             }
         }
 
-        public async Task<int> DeleteAsync(int id)
+        public async Task<int?> DeleteAsync(int id)
         {
-            var sql = "Delete from Users Where Id = @Id";
             using (var connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection")))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(sql, new { Id = id });
+                var result = await connection.DeleteAsync<User>(id);
                 return result;
             }
         }
 
         public async Task<IReadOnlyList<User>> GetAllAsync()
         {
-            var sql = "Select * from Users";
             using (var connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection")))
             {
                 connection.Open();
-                var result = await connection.QueryAsync<User>(sql);
+                var result = await connection.GetListAsync<User>();
                 return result.ToList();
             }
         }
 
         public async Task<User> GetByIdAsync(int id)
         {
-            var sql = "Select * from Users where Id = @Id";
             using (var connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection")))
             {
                 connection.Open();
-                var result = await connection.QuerySingleOrDefaultAsync<User>(sql, new { Id = id });
+                var result = await connection.GetAsync<User>(id);
                 return result;
             }
         }
 
-        public async Task<int> UpdateAsync(User entity)
+        public async Task<int?> UpdateAsync(User entity)
         {
-            var sql = "Update Users set FirstName = @FirstName, LastName = @LastName, DateOfBirth = @DateOfBirth, Email = @Email, Password = @Password  WHERE Id = @Id";
             using (var connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection")))
             {
                 connection.Open();
-                var result = await connection.ExecuteAsync(sql, entity);
+                var result = await connection.UpdateAsync(entity);
                 return result;
             }
         }
