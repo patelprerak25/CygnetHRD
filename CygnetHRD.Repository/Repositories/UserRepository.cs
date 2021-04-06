@@ -4,6 +4,7 @@ using Dapper;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -17,15 +18,15 @@ namespace CygnetHRD.Infrastructure.Repositories
     /// </summary>
     public class UserRepository : IUserRepository
     {
-        private readonly IConfiguration configuration;
+        private readonly IDbConnection connection;
 
         /// <summary>
         /// UserRepository constructor with IConfiguration parameter.
         /// </summary>
-        /// <param name="_configuration">IConfiguration</param>
-        public UserRepository(IConfiguration _configuration)
+        /// <param name="_connection">IDbConnection</param>
+        public UserRepository(IDbConnection _connection)
         {
-            this.configuration = _configuration;
+            this.connection = _connection;
         }
 
         /// <summary>
@@ -35,12 +36,8 @@ namespace CygnetHRD.Infrastructure.Repositories
         /// <returns>int</returns>
         public async Task<int?> AddAsync(User entity)
         {
-            using (var connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection")))
-            {
-                connection.Open();
-                var result = await connection.InsertAsync(entity);
-                return result;
-            }
+            var result = await this.connection.InsertAsync(entity);
+            return result;
         }
 
         /// <summary>
@@ -50,12 +47,8 @@ namespace CygnetHRD.Infrastructure.Repositories
         /// <returns>int</returns>
         public async Task<int?> DeleteAsync(object id)
         {
-            using (var connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection")))
-            {
-                connection.Open();
-                var result = await connection.DeleteAsync<User>(id);
-                return result;
-            }
+            var result = await this.connection.DeleteAsync<User>(id);
+            return result;
         }
 
         /// <summary>
@@ -64,12 +57,8 @@ namespace CygnetHRD.Infrastructure.Repositories
         /// <returns>List of User</returns>
         public async Task<IReadOnlyList<User>> GetAllAsync()
         {
-            using (var connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection")))
-            {
-                connection.Open();
-                var result = await connection.GetListAsync<User>();
-                return result.ToList();
-            }
+            var result = await this.connection.GetListAsync<User>();
+            return result.ToList();
         }
 
         /// <summary>
@@ -79,12 +68,8 @@ namespace CygnetHRD.Infrastructure.Repositories
         /// <returns>User</returns>
         public async Task<User> GetByIdAsync(object id)
         {
-            using (var connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection")))
-            {
-                connection.Open();
-                var result = await connection.GetAsync<User>(id);
-                return result;
-            }
+            var result = await this.connection.GetAsync<User>(id);
+            return result;
         }
 
         /// <summary>
@@ -94,12 +79,10 @@ namespace CygnetHRD.Infrastructure.Repositories
         /// <returns>int</returns>
         public async Task<int?> UpdateAsync(User entity)
         {
-            using (var connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection")))
-            {
-                connection.Open();
-                var result = await connection.UpdateAsync(entity);
-                return result;
-            }
+            var result = await this.connection.UpdateAsync(entity);
+            return result;
         }
     }
 }
+
+

@@ -12,6 +12,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,6 +60,10 @@ namespace CygnetHRD.WebAPI
                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                         };
                     });
+
+            //add database connection object and inject it to use in entity repository
+            string dbConnectionString = this.Configuration.GetConnectionString("DefaultConnection");
+            services.AddTransient<IDbConnection>((sp) => new SqlConnection(dbConnectionString));
 
             services.AddServices();
             services.AddControllers();

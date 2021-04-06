@@ -9,11 +9,11 @@
             Class for User repository implemenation having CRUD opration using Dapper.
             </summary>
         </member>
-        <member name="M:CygnetHRD.Infrastructure.Repositories.UserRepository.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:CygnetHRD.Infrastructure.Repositories.UserRepository.#ctor(System.Data.IDbConnection)">
             <summary>
             UserRepository constructor with IConfiguration parameter.
             </summary>
-            <param name="_configuration">IConfiguration</param>
+            <param name="_connection">IDbConnection</param>
         </member>
         <member name="M:CygnetHRD.Infrastructure.Repositories.UserRepository.AddAsync(CygnetHRD.Entity.Entities.User)">
             <summary>
