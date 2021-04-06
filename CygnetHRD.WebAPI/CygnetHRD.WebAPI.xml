@@ -10,7 +10,7 @@
             Also provide feature of validation of token send by user.
             </summary>
         </member>
-        <member name="M:CygnetHRD.WebAPI.Controllers.LoginController.#ctor(CygnetHRD.Application.Interfaces.IUnitOfWork,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:CygnetHRD.WebAPI.Controllers.LoginController.#ctor(CygnetHRD.Application.Interfaces.IUnitOfWork,Microsoft.Extensions.Configuration.IConfiguration,AutoMapper.IMapper)">
             <summary>
             Initializes a new instance of the <see cref="T:CygnetHRD.WebAPI.Controllers.LoginController"/> class.
             Public constructor to initialize UnitOfWork instance.
@@ -38,7 +38,7 @@
             This is the User controller class which having all CRUD method related to User entity.
             </summary>
         </member>
-        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.#ctor(CygnetHRD.Application.Interfaces.IUnitOfWork)">
+        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.#ctor(CygnetHRD.Application.Interfaces.IUnitOfWork,AutoMapper.IMapper)">
             <summary>
             Initializes a new instance of the <see cref="T:CygnetHRD.WebAPI.Controllers.UserController"/> class.
             Public constructor to initialize UnitOfWork instance.

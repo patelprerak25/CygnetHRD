@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using CygnetHRD.Application.Interfaces;
+using CygnetHRD.Entity.DBModel;
 using CygnetHRD.Entity.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,19 +17,21 @@ namespace CygnetHRD.WebAPI.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UserController"/> class.
         /// Public constructor to initialize UnitOfWork instance.
         /// </summary>
         /// <param name="unitOfWork">IUnitOfWork</param>
-        public UserController(IUnitOfWork unitOfWork)
+        public UserController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
 
         /// <summary>
@@ -36,14 +40,13 @@ namespace CygnetHRD.WebAPI.Controllers
         /// <returns>List of User.</returns>
         /// <example>GET ../api/user</example>
         /// <example>GET ../api/user/all</example>
-        [HttpGet]
-        [HttpGet("all")]
+        [HttpGet(Name = "GetAll")]
         [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
             var data = await this.unitOfWork.Users.GetAllAsync();
             if (data.Count() > 0)
-                return this.Ok(data);
+                return this.Ok(mapper.Map<List<User>>(data));
             else
                 return this.NotFound("User doesn't exist.");
         }
@@ -54,7 +57,7 @@ namespace CygnetHRD.WebAPI.Controllers
         /// <param name="id">int : User id.</param>
         /// <returns>User : User entity object.</returns>
         /// <example>GET ../api/user/2 .</example>
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetById")]
         public async Task<IActionResult> GetById(int id)
         {
             var data = await this.unitOfWork.Users.GetByIdAsync(id);
@@ -63,7 +66,7 @@ namespace CygnetHRD.WebAPI.Controllers
                 return this.NotFound("User doesn't exist.");
             }
 
-            return this.Ok(data);
+            return this.Ok(mapper.Map<User>(data));
         }
 
         /// <summary>
@@ -74,14 +77,14 @@ namespace CygnetHRD.WebAPI.Controllers
         /// <example>POST ../api/user</example>
         /// <example>POST ../api/user/create</example>
         /// <example>POST ../api/user/register</example>
-        [HttpPost]
-        [HttpPost("create")]
-        [HttpPost("register")]
+        [HttpPost(Name = "Add")]
+        [HttpPost("create", Name = "Create")]
+        [HttpPost("register", Name = "Register")]
         public async Task<IActionResult> Add(User user)
         {
             if (user != null)
             {
-                var data = await this.unitOfWork.Users.AddAsync(user);
+                var data = await this.unitOfWork.Users.AddAsync(mapper.Map<Users>(user));
                 return this.Ok(data);
             }
             else
@@ -96,9 +99,8 @@ namespace CygnetHRD.WebAPI.Controllers
         /// <example>DELETE ../api/user/1</example>
         /// <example>DELETE ../api/user/remove/1</example>
         /// <example>DELETE ../api/user/delete/1</example>
-        [HttpDelete]
-        [HttpDelete("remove/{id}")]
-        [HttpDelete("delete/{id}")]
+        [HttpDelete(Name = "Delete")]
+        [HttpDelete("remove/{id}", Name = "Remove")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id > 0)
@@ -119,25 +121,21 @@ namespace CygnetHRD.WebAPI.Controllers
         /// <example>PUT ../api/user</example>
         /// <example>PUT ../api/user/update</example>
         /// <example>PUT ../api/user/modify</example>
-        [HttpPut("{id}")]
-        [HttpPut("update/{id}")]
-        [HttpPut("modify/{id}")]
+        [HttpPut("{id}", Name = "Update")]
+        [HttpPut("modify/{id}", Name = "Modify")]        
         public async Task<IActionResult> Update(int id, User user)
         {
             if (id > 0 && user != null)
             {
-                var currentUser = await this.unitOfWork.Users.GetByIdAsync(id);
+                var currentUser = mapper.Map<Users>(user);
                 if (currentUser != null)
                 {
-                    //will use automapper instead of below code
-                    currentUser.FirstName = user.FirstName;
-                    currentUser.LastName = user.LastName;
-                    currentUser.Email = user.Email;
-                    currentUser.Password = user.Password;
+                    currentUser.Id = id;
 
                     var data = await this.unitOfWork.Users.UpdateAsync(currentUser);
                     return this.Ok(data);
-                }else
+                }
+                else
                     return this.BadRequest();
             }
             else

@@ -15,7 +15,7 @@
             </summary>
             <param name="_connection">IDbConnection</param>
         </member>
-        <member name="M:CygnetHRD.Infrastructure.Repositories.UserRepository.AddAsync(CygnetHRD.Entity.Entities.User)">
+        <member name="M:CygnetHRD.Infrastructure.Repositories.UserRepository.AddAsync(CygnetHRD.Entity.DBModel.Users)">
             <summary>
             Method for add User entity.
             </summary>
@@ -42,7 +42,7 @@
             <param name="id">int</param>
             <returns>User</returns>
         </member>
-        <member name="M:CygnetHRD.Infrastructure.Repositories.UserRepository.UpdateAsync(CygnetHRD.Entity.Entities.User)">
+        <member name="M:CygnetHRD.Infrastructure.Repositories.UserRepository.UpdateAsync(CygnetHRD.Entity.DBModel.Users)">
             <summary>
             Method for update User entity.
             </summary>

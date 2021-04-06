@@ -68,6 +68,8 @@ namespace CygnetHRD.WebAPI
             services.AddServices();
             services.AddControllers();
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CygnetHRD.WebAPI", Version = "v1" });

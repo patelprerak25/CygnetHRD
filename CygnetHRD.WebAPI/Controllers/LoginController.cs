@@ -1,4 +1,5 @@
-﻿using CygnetHRD.Application.Interfaces;
+﻿using AutoMapper;
+using CygnetHRD.Application.Interfaces;
 using CygnetHRD.Entity.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,7 @@ namespace CygnetHRD.WebAPI.Controllers
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IConfiguration configuration;
+        private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginController"/> class.
@@ -30,10 +32,11 @@ namespace CygnetHRD.WebAPI.Controllers
         /// </summary>
         /// <param name="unitOfWork">IUnitOfWork</param>
         /// <param name="configuration">IConfiguration</param>
-        public LoginController(IUnitOfWork unitOfWork, IConfiguration configuration)
+        public LoginController(IUnitOfWork unitOfWork, IConfiguration configuration, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             this.configuration = configuration;
+            this.mapper = mapper;
         }
 
         /// <summary>
@@ -42,7 +45,7 @@ namespace CygnetHRD.WebAPI.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost(Name = "Login")]
         public  IActionResult Login([FromBody] Login user)
         {
             if (user == null)
@@ -50,7 +53,7 @@ namespace CygnetHRD.WebAPI.Controllers
                 return this.BadRequest(new { status = 400, isSuccess = false, message = "Invalid request." });
             }
 
-            User _user = this.unitOfWork.Users.GetAllAsync().Result.Where(a => a.Email == user.Email && a.Password == user.Password).FirstOrDefault();
+            User _user = mapper.Map<User>(this.unitOfWork.Users.GetAllAsync().Result.Where(a => a.Email == user.Email && a.Password == user.Password).FirstOrDefault());
             if (_user != null)
             {
                 return this.Ok(new { status = 200, isSuccess = true, message = GenerateToken(user.Email) });

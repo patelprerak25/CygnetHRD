@@ -1,4 +1,4 @@
-﻿using CygnetHRD.Entity.Entities;
+﻿using CygnetHRD.Entity.DBModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +8,7 @@ namespace CygnetHRD.Application.Interfaces
     /// <summary>
     /// Create IUserRepository interface using IGenericRepository for User entity.
     /// </summary>
-    public interface IUserRepository : IGenericRepository<User>
+    public interface IUserRepository : IGenericRepository<Users>
     {
     }
 }
