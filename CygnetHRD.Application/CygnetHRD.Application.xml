@@ -29,7 +29,8 @@
             <summary>
             Update entity into database.
             </summary>
-            <param name="entity"></param>
+            <param name="id">object</param>
+            <param name="entity">T</param>
             <returns>int</returns>
         </member>
         <member name="M:CygnetHRD.Application.Interfaces.IGenericRepository`1.DeleteAsync(System.Object)">

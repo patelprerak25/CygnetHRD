@@ -113,20 +113,32 @@ namespace CygnetHRD.WebAPI.Controllers
         /// <summary>
         /// API call for update User entity.
         /// </summary>
+        /// <param name="id">int</param>
         /// <param name="user">User</param>
         /// <returns>int : 1 for success and 0 for fail update status.</returns>
         /// <example>PUT ../api/user</example>
         /// <example>PUT ../api/user/update</example>
         /// <example>PUT ../api/user/modify</example>
-        [HttpPut]
-        [HttpPut("update")]
-        [HttpPut("modify")]
-        public async Task<IActionResult> Update(User user)
+        [HttpPut("{id}")]
+        [HttpPut("update/{id}")]
+        [HttpPut("modify/{id}")]
+        public async Task<IActionResult> Update(int id, User user)
         {
-            if (user != null)
+            if (id > 0 && user != null)
             {
-                var data = await this.unitOfWork.Users.UpdateAsync(user);
-                return this.Ok(data);
+                var currentUser = await this.unitOfWork.Users.GetByIdAsync(id);
+                if (currentUser != null)
+                {
+                    //will use automapper instead of below code
+                    currentUser.FirstName = user.FirstName;
+                    currentUser.LastName = user.LastName;
+                    currentUser.Email = user.Email;
+                    currentUser.Password = user.Password;
+
+                    var data = await this.unitOfWork.Users.UpdateAsync(currentUser);
+                    return this.Ok(data);
+                }else
+                    return this.BadRequest();
             }
             else
                 return this.BadRequest();

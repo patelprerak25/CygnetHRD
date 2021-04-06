@@ -81,10 +81,11 @@
             <example>DELETE ../api/user/remove/1</example>
             <example>DELETE ../api/user/delete/1</example>
         </member>
-        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.Update(CygnetHRD.Entity.Entities.User)">
+        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.Update(System.Int32,CygnetHRD.Entity.Entities.User)">
             <summary>
             API call for update User entity.
             </summary>
+            <param name="id">int</param>
             <param name="user">User</param>
             <returns>int : 1 for success and 0 for fail update status.</returns>
             <example>PUT ../api/user</example>

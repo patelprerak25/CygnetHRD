@@ -34,7 +34,8 @@ namespace CygnetHRD.Application.Interfaces
         /// <summary>
         /// Update entity into database.
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="id">object</param>
+        /// <param name="entity">T</param>
         /// <returns>int</returns>
         Task<int?> UpdateAsync(T entity);
 
