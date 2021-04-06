@@ -15,7 +15,7 @@ namespace CygnetHRD.WebAPI.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;

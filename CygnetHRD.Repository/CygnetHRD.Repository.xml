@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CygnetHRD.Repository</name>
+    </assembly>
+    <members>
+        <member name="T:CygnetHRD.Infrastructure.Repositories.UserRepository">
+            <summary>
+            Class for User repository implemenation having CRUD opration using Dapper.
+            </summary>
+        </member>
+        <member name="M:CygnetHRD.Infrastructure.Repositories.UserRepository.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            UserRepository constructor with IConfiguration parameter.
+            </summary>
+            <param name="_configuration">IConfiguration</param>
+        </member>
+        <member name="M:CygnetHRD.Infrastructure.Repositories.UserRepository.AddAsync(CygnetHRD.Entity.Entities.User)">
+            <summary>
+            Method for add User entity.
+            </summary>
+            <param name="entity">User</param>
+            <returns>int</returns>
+        </member>
+        <member name="M:CygnetHRD.Infrastructure.Repositories.UserRepository.DeleteAsync(System.Object)">
+            <summary>
+            Method for delete User endity by id.
+            </summary>
+            <param name="id">object</param>
+            <returns>int</returns>
+        </member>
+        <member name="M:CygnetHRD.Infrastructure.Repositories.UserRepository.GetAllAsync">
+            <summary>
+            Method for get all User entities.
+            </summary>
+            <returns>List of User</returns>
+        </member>
+        <member name="M:CygnetHRD.Infrastructure.Repositories.UserRepository.GetByIdAsync(System.Object)">
+            <summary>
+            Method for get User entity by it's id.
+            </summary>
+            <param name="id">int</param>
+            <returns>User</returns>
+        </member>
+        <member name="M:CygnetHRD.Infrastructure.Repositories.UserRepository.UpdateAsync(CygnetHRD.Entity.Entities.User)">
+            <summary>
+            Method for update User entity.
+            </summary>
+            <param name="entity">User</param>
+            <returns>int</returns>
+        </member>
+    </members>
+</doc>
