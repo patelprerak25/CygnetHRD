@@ -11,13 +11,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CygnetHRD.WebAPI.Controllers
 {
-
     /// <summary>
     /// This is the User controller class which having all CRUD method related to User entity.
     /// </summary>
     [Route("api/[controller]")]
+    //[Authorize]
     [ApiController]
-    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
@@ -44,7 +43,7 @@ namespace CygnetHRD.WebAPI.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
-            var data = await this.unitOfWork.Users.GetAllAsync();
+            var data = await Task.Run(() => this.unitOfWork.Users.GetAll());
             if (data.Count() > 0)
                 return this.Ok(mapper.Map<List<User>>(data));
             else
@@ -60,7 +59,7 @@ namespace CygnetHRD.WebAPI.Controllers
         [HttpGet("{id}", Name = "GetById")]
         public async Task<IActionResult> GetById(int id)
         {
-            var data = await this.unitOfWork.Users.GetByIdAsync(id);
+            var data = await Task.Run(() => this.unitOfWork.Users.GetById(id));
             if (data == null)
             {
                 return this.NotFound("User doesn't exist.");
@@ -84,7 +83,7 @@ namespace CygnetHRD.WebAPI.Controllers
         {
             if (user != null)
             {
-                var data = await this.unitOfWork.Users.AddAsync(mapper.Map<Users>(user));
+                var data = await Task.Run(() => this.unitOfWork.Users.Add(mapper.Map<Users>(user)));
                 return this.Ok(data);
             }
             else
@@ -99,13 +98,13 @@ namespace CygnetHRD.WebAPI.Controllers
         /// <example>DELETE ../api/user/1</example>
         /// <example>DELETE ../api/user/remove/1</example>
         /// <example>DELETE ../api/user/delete/1</example>
-        [HttpDelete(Name = "Delete")]
+        [HttpDelete("{id}", Name = "Delete")]
         [HttpDelete("remove/{id}", Name = "Remove")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id > 0)
             {
-                var data = await this.unitOfWork.Users.DeleteAsync(id);
+                var data = await Task.Run(() => this.unitOfWork.Users.Delete(id));
                 return this.Ok(data);
             }
             else
@@ -122,7 +121,7 @@ namespace CygnetHRD.WebAPI.Controllers
         /// <example>PUT ../api/user/update</example>
         /// <example>PUT ../api/user/modify</example>
         [HttpPut("{id}", Name = "Update")]
-        [HttpPut("modify/{id}", Name = "Modify")]        
+        [HttpPut("modify/{id}", Name = "Modify")]
         public async Task<IActionResult> Update(int id, User user)
         {
             if (id > 0 && user != null)
@@ -132,7 +131,7 @@ namespace CygnetHRD.WebAPI.Controllers
                 {
                     currentUser.Id = id;
 
-                    var data = await this.unitOfWork.Users.UpdateAsync(currentUser);
+                    var data = await Task.Run(() => this.unitOfWork.Users.Update(currentUser));
                     return this.Ok(data);
                 }
                 else

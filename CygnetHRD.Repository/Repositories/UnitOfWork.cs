@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygnetHRD.Infrastructure.Repositories
+namespace CygnetHRD.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public UnitOfWork(IUserRepository userRepository)
+        public UnitOfWork(IUserRepository userRepository) // need to implement collection for repository
         {
             Users = userRepository;
         }

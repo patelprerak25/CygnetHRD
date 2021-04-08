@@ -53,7 +53,7 @@ namespace CygnetHRD.WebAPI.Controllers
                 return this.BadRequest(new { status = 400, isSuccess = false, message = "Invalid request." });
             }
 
-            User _user = mapper.Map<User>(this.unitOfWork.Users.GetAllAsync().Result.Where(a => a.Email == user.Email && a.Password == user.Password).FirstOrDefault());
+            User _user = mapper.Map<User>(this.unitOfWork.Users.GetAll().Where(a => a.Email == user.Email && a.Password == user.Password).FirstOrDefault());
             if (_user != null)
             {
                 return this.Ok(new { status = 200, isSuccess = true, message = GenerateToken(user.Email) });

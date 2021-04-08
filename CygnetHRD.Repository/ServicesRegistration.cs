@@ -1,5 +1,5 @@
 ﻿using CygnetHRD.Application.Interfaces;
-using CygnetHRD.Infrastructure.Repositories;
+using CygnetHRD.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CygnetHRD.Infrastructure
+namespace CygnetHRD.Repositories
 {
     public static class ServicesRegistration
     {

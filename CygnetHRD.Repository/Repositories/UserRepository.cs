@@ -1,6 +1,7 @@
 ﻿using CygnetHRD.Application.Interfaces;
 using CygnetHRD.Entity.DBModel;
 using Dapper;
+using CygnetHRD.Persistence;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace CygnetHRD.Infrastructure.Repositories
+namespace CygnetHRD.Repositories
 {
     /// <summary>
     /// Class for User repository implemenation having CRUD opration using Dapper.
@@ -34,9 +34,9 @@ namespace CygnetHRD.Infrastructure.Repositories
         /// </summary>
         /// <param name="entity">User</param>
         /// <returns>int</returns>
-        public async Task<int?> AddAsync(Users entity)
+        public object Add(Users entity)
         {
-            var result = await this.connection.InsertAsync(entity);
+            var result = this.connection.Insert(entity);
             return result;
         }
 
@@ -45,9 +45,10 @@ namespace CygnetHRD.Infrastructure.Repositories
         /// </summary>
         /// <param name="id">object</param>
         /// <returns>int</returns>
-        public async Task<int?> DeleteAsync(object id)
+        public bool Delete(object id)
         {
-            var result = await this.connection.DeleteAsync<Users>(id);
+            Users users = this.connection.Get<Users>(id);
+            var result = this.connection.Delete<Users>(users);
             return result;
         }
 
@@ -55,9 +56,9 @@ namespace CygnetHRD.Infrastructure.Repositories
         /// Method for get all User entities.
         /// </summary>
         /// <returns>List of User</returns>
-        public async Task<IReadOnlyList<Users>> GetAllAsync()
+        public IReadOnlyList<Users> GetAll()
         {
-            var result = await this.connection.GetListAsync<Users>();
+            var result = this.connection.GetList<Users>();
             return result.ToList();
         }
 
@@ -66,9 +67,9 @@ namespace CygnetHRD.Infrastructure.Repositories
         /// </summary>
         /// <param name="id">int</param>
         /// <returns>User</returns>
-        public async Task<Users> GetByIdAsync(object id)
+        public Users GetById(object id)
         {
-            var result = await this.connection.GetAsync<Users>(id);
+            var result = this.connection.Get<Users>(id);
             return result;
         }
 
@@ -77,9 +78,9 @@ namespace CygnetHRD.Infrastructure.Repositories
         /// </summary>
         /// <param name="entity">User</param>
         /// <returns>int</returns>
-        public async Task<int?> UpdateAsync(Users entity)
+        public bool Update(Users entity)
         {
-            var result = await this.connection.UpdateAsync(entity);
+            var result = this.connection.Update(entity);
             return result;
         }
     }

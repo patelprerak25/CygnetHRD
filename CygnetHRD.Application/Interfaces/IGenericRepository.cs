@@ -16,34 +16,33 @@ namespace CygnetHRD.Application.Interfaces
         /// </summary>
         /// <param name="id">object</param>
         /// <returns>Entity object</returns>
-        Task<T> GetByIdAsync(object id);
+        T GetById(object id);
 
         /// <summary>
         /// Get list of all entity objects.
         /// </summary>
-        /// <returns>IReadOnlyList<T></returns>
-        Task<IReadOnlyList<T>> GetAllAsync();
+        /// <returns>IReadOnlyList of T</returns>
+        IReadOnlyList<T> GetAll();
 
         /// <summary>
         /// Add new entity object into database.
         /// </summary>
         /// <param name="entity"></param>
-        /// <returns>Entity object</returns>
-        Task<int?> AddAsync(T entity);
+        /// <returns>int</returns>
+        object Add(T entity);
 
         /// <summary>
         /// Update entity into database.
         /// </summary>
-        /// <param name="id">object</param>
         /// <param name="entity">T</param>
-        /// <returns>int</returns>
-        Task<int?> UpdateAsync(T entity);
+        /// <returns>bool</returns>
+        bool Update(T entity);
 
         /// <summary>
         /// Delete entity from database as per given id.
         /// </summary>
         /// <param name="id">object</param>
-        /// <returns>int</returns>
-        Task<int?> DeleteAsync(object id);
+        /// <returns>bool</returns>
+        bool Delete(object id);
     }
 }

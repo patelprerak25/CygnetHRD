@@ -10,35 +10,39 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:CygnetHRD.Application.Interfaces.IGenericRepository`1.GetByIdAsync(System.Object)">
+        <member name="M:CygnetHRD.Application.Interfaces.IGenericRepository`1.GetById(System.Object)">
             <summary>
             Get entity object by id.
             </summary>
             <param name="id">object</param>
             <returns>Entity object</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:CygnetHRD.Application.Interfaces.IGenericRepository`1.GetAllAsync" -->
-        <member name="M:CygnetHRD.Application.Interfaces.IGenericRepository`1.AddAsync(`0)">
+        <member name="M:CygnetHRD.Application.Interfaces.IGenericRepository`1.GetAll">
+            <summary>
+            Get list of all entity objects.
+            </summary>
+            <returns>IReadOnlyList of T</returns>
+        </member>
+        <member name="M:CygnetHRD.Application.Interfaces.IGenericRepository`1.Add(`0)">
             <summary>
             Add new entity object into database.
             </summary>
             <param name="entity"></param>
-            <returns>Entity object</returns>
+            <returns>int</returns>
         </member>
-        <member name="M:CygnetHRD.Application.Interfaces.IGenericRepository`1.UpdateAsync(`0)">
+        <member name="M:CygnetHRD.Application.Interfaces.IGenericRepository`1.Update(`0)">
             <summary>
             Update entity into database.
             </summary>
-            <param name="id">object</param>
             <param name="entity">T</param>
-            <returns>int</returns>
+            <returns>bool</returns>
         </member>
-        <member name="M:CygnetHRD.Application.Interfaces.IGenericRepository`1.DeleteAsync(System.Object)">
+        <member name="M:CygnetHRD.Application.Interfaces.IGenericRepository`1.Delete(System.Object)">
             <summary>
             Delete entity from database as per given id.
             </summary>
             <param name="id">object</param>
-            <returns>int</returns>
+            <returns>bool</returns>
         </member>
         <member name="T:CygnetHRD.Application.Interfaces.IUnitOfWork">
             <summary>
