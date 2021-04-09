@@ -59,5 +59,116 @@
             Create IUserRepository interface using IGenericRepository for User entity.
             </summary>
         </member>
+        <member name="T:CygnetHRD.Application.Users_.Commands.CreateUser.CreateUserCommand">
+            <summary>
+            This class define request input and output object which send to the handler for process.
+            </summary>
+        </member>
+        <member name="P:CygnetHRD.Application.Users_.Commands.CreateUser.CreateUserCommand.Users">
+            <summary>
+            Get or Set User object.
+            </summary>
+        </member>
+        <member name="T:CygnetHRD.Application.Users_.Commands.CreateUser.CreateUserCommandHandler">
+            <summary>
+            This class use for handle Create User request.
+            The send method of MediatR sends the object to this class for process.
+            </summary>
+        </member>
+        <member name="M:CygnetHRD.Application.Users_.Commands.CreateUser.CreateUserCommandHandler.#ctor(CygnetHRD.Application.Interfaces.IUnitOfWork)">
+            <summary>
+            Public constructor to initialize UnitOfWork instance.
+            </summary>
+            <param name="unitOfWork">IUnitOfWork</param>
+        </member>
+        <member name="M:CygnetHRD.Application.Users_.Commands.CreateUser.CreateUserCommandHandler.Handle(CygnetHRD.Application.Users_.Commands.CreateUser.CreateUserCommand,System.Threading.CancellationToken)">
+            <summary>
+            Method to handle the request.
+            </summary>
+            <param name="request">CreateUserCommand</param>
+            <param name="cancellationToken">CancellationToken</param>
+            <returns></returns>
+        </member>
+        <member name="T:CygnetHRD.Application.Users_.Commands.DeleteUser.DeleteUserCommand">
+            <summary>
+            This class define request input and output object which send to the handler for process.
+            </summary>
+        </member>
+        <member name="T:CygnetHRD.Application.Users_.Commands.DeleteUser.DeleteUserCommandHandler">
+            <summary>
+            This class use for handle Delete User request.
+            The send method of MediatR sends the object to this class for process.
+            </summary>
+        </member>
+        <member name="M:CygnetHRD.Application.Users_.Commands.DeleteUser.DeleteUserCommandHandler.#ctor(CygnetHRD.Application.Interfaces.IUnitOfWork)">
+            <summary>
+            Public constructor to initialize UnitOfWork instance.
+            </summary>
+            <param name="unitOfWork">IUnitOfWork</param>
+        </member>
+        <member name="M:CygnetHRD.Application.Users_.Commands.DeleteUser.DeleteUserCommandHandler.Handle(CygnetHRD.Application.Users_.Commands.DeleteUser.DeleteUserCommand,System.Threading.CancellationToken)">
+            <summary>
+            Method to handle the request.
+            </summary>
+            <param name="request">CreateUserCommand</param>
+            <param name="cancellationToken">CancellationToken</param>
+            <returns></returns>
+        </member>
+        <member name="T:CygnetHRD.Application.Users_.Commands.UpdateUser.UpdateUserCommand">
+            <summary>
+            This class define request input and output object which send to the handler for process.
+            </summary>
+        </member>
+        <member name="T:CygnetHRD.Application.Users_.Commands.UpdateUser.UpdateUserCommandHandler">
+            <summary>
+            This class use for handle Update User request.
+            The send method of MediatR sends the object to this class for process.
+            </summary>
+        </member>
+        <member name="M:CygnetHRD.Application.Users_.Commands.UpdateUser.UpdateUserCommandHandler.#ctor(CygnetHRD.Application.Interfaces.IUnitOfWork)">
+            <summary>
+            Public constructor to initialize UnitOfWork instance.
+            </summary>
+            <param name="unitOfWork">IUnitOfWork</param>
+        </member>
+        <member name="M:CygnetHRD.Application.Users_.Commands.UpdateUser.UpdateUserCommandHandler.Handle(CygnetHRD.Application.Users_.Commands.UpdateUser.UpdateUserCommand,System.Threading.CancellationToken)">
+            <summary>
+            Method to handle the request.
+            </summary>
+            <param name="request">CreateUserCommand</param>
+            <param name="cancellationToken">CancellationToken</param>
+            <returns></returns>
+        </member>
+        <member name="T:CygnetHRD.Application.Users_.Queries.GetAllUser.GetAllUserQuery">
+            <summary>
+            This class define request input and output object which send to the handler for process.
+            </summary>
+        </member>
+        <member name="T:CygnetHRD.Application.Users_.Queries.GetAllUser.GetAllUserQueryHandler">
+            <summary>
+            This class use for handle Get All User request.
+            The send method of MediatR sends the object to this class for process.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:CygnetHRD.Application.Users_.Queries.GetAllUser.GetAllUserQueryHandler.#ctor(CygnetHRD.Application.Interfaces.IUnitOfWork)" -->
+        <!-- Badly formed XML comment ignored for member "M:CygnetHRD.Application.Users_.Queries.GetAllUser.GetAllUserQueryHandler.Handle(CygnetHRD.Application.Users_.Queries.GetAllUser.GetAllUserQuery,System.Threading.CancellationToken)" -->
+        <member name="T:CygnetHRD.Application.Users_.Queries.GetUser.GetUserByIdQuery">
+            <summary>
+            This class define request input and output object which send to the handler for process.
+            </summary>
+        </member>
+        <member name="T:CygnetHRD.Application.Users_.Queries.GetUser.GetUserByIdQueryHandler">
+            <summary>
+            This class use for handle Get User By Id request.
+            The send method of MediatR sends the object to this class for process.
+            </summary>
+        </member>
+        <member name="M:CygnetHRD.Application.Users_.Queries.GetUser.GetUserByIdQueryHandler.#ctor(CygnetHRD.Application.Interfaces.IUnitOfWork)">
+            <summary>
+            Public constructor to initialize UnitOfWork instance.
+            </summary>
+            <param name="unitOfWork">IUnitOfWork</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:CygnetHRD.Application.Users_.Queries.GetUser.GetUserByIdQueryHandler.Handle(CygnetHRD.Application.Users_.Queries.GetUser.GetUserByIdQuery,System.Threading.CancellationToken)" -->
     </members>
 </doc>

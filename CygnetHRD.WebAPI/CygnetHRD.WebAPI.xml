@@ -38,12 +38,13 @@
             This is the User controller class which having all CRUD method related to User entity.
             </summary>
         </member>
-        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.#ctor(CygnetHRD.Application.Interfaces.IUnitOfWork,AutoMapper.IMapper)">
+        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.#ctor(AutoMapper.IMapper,MediatR.IMediator)">
             <summary>
             Initializes a new instance of the <see cref="T:CygnetHRD.WebAPI.Controllers.UserController"/> class.
             Public constructor to initialize UnitOfWork instance.
             </summary>
-            <param name="unitOfWork">IUnitOfWork</param>
+            <param name="mapper">IMapper</param>
+            <param name="mediator">IMediator</param>
         </member>
         <member name="M:CygnetHRD.WebAPI.Controllers.UserController.GetAll">
             <summary>
@@ -79,7 +80,6 @@
             <returns>int : 1 for success and 0 for fail delete status.</returns>
             <example>DELETE ../api/user/1</example>
             <example>DELETE ../api/user/remove/1</example>
-            <example>DELETE ../api/user/delete/1</example>
         </member>
         <member name="M:CygnetHRD.WebAPI.Controllers.UserController.Update(System.Int32,CygnetHRD.Entity.Entities.User)">
             <summary>
@@ -89,7 +89,6 @@
             <param name="user">User</param>
             <returns>int : 1 for success and 0 for fail update status.</returns>
             <example>PUT ../api/user</example>
-            <example>PUT ../api/user/update</example>
             <example>PUT ../api/user/modify</example>
         </member>
         <member name="T:CygnetHRD.WebAPI.Program">

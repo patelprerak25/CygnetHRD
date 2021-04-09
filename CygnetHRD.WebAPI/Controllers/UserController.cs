@@ -4,8 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CygnetHRD.Application.Interfaces;
+using CygnetHRD.Application.Users_.Commands.CreateUser;
+using CygnetHRD.Application.Users_.Commands.DeleteUser;
+using CygnetHRD.Application.Users_.Commands.UpdateUser;
+using CygnetHRD.Application.Users_.Queries.GetAllUser;
+using CygnetHRD.Application.Users_.Queries.GetUser;
 using CygnetHRD.Entity.DBModel;
 using CygnetHRD.Entity.Entities;
+using KendoGridParameterParser;
+using KendoGridParameterParser.Models;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,19 +27,34 @@ namespace CygnetHRD.WebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
+        private readonly IMediator mediator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UserController"/> class.
         /// Public constructor to initialize UnitOfWork instance.
         /// </summary>
-        /// <param name="unitOfWork">IUnitOfWork</param>
-        public UserController(IUnitOfWork unitOfWork, IMapper mapper)
+        /// <param name="mapper">IMapper</param>
+        /// <param name="mediator">IMediator</param>
+        public UserController(IMapper mapper, IMediator mediator)
         {
-            this.unitOfWork = unitOfWork;
             this.mapper = mapper;
+            this.mediator = mediator;
         }
+
+        //[HttpGet]
+        //public ActionResult Index(DataSourceRequest request)
+        //{
+        //    var expression = DataSourceFilterMapHelper.RecursiveFilterExpressionBuilder(request.Filter);
+        //    var sorter = DataSourceSortMapHelper.SortExpressionBuilder(request.Sort);
+        //    AggregateResult aggr = DataSourceAggregateMapHelper.AggregateExpressionBuilder(request.Aggregate);
+
+        //    var data = this.unitOfWork.Users.GetAll();
+        //    if (data.Count() > 0)
+        //        return this.Ok(mapper.Map<List<User>>(data));
+        //    else
+        //        return this.NotFound("User doesn't exist.");
+        //}
 
         /// <summary>
         /// This method use for featching all Users.
@@ -43,7 +66,7 @@ namespace CygnetHRD.WebAPI.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
-            var data = await Task.Run(() => this.unitOfWork.Users.GetAll());
+            var data = await Task.Run(() => mediator.Send(new GetAllUserQuery() { }));
             if (data.Count() > 0)
                 return this.Ok(mapper.Map<List<User>>(data));
             else
@@ -59,7 +82,7 @@ namespace CygnetHRD.WebAPI.Controllers
         [HttpGet("{id}", Name = "GetById")]
         public async Task<IActionResult> GetById(int id)
         {
-            var data = await Task.Run(() => this.unitOfWork.Users.GetById(id));
+            var data = await mediator.Send(new GetUserByIdQuery() { Id = id });
             if (data == null)
             {
                 return this.NotFound("User doesn't exist.");
@@ -83,7 +106,7 @@ namespace CygnetHRD.WebAPI.Controllers
         {
             if (user != null)
             {
-                var data = await Task.Run(() => this.unitOfWork.Users.Add(mapper.Map<Users>(user)));
+                var data = await mediator.Send(new CreateUserCommand() { Users = mapper.Map<Users>(user) });
                 return this.Ok(data);
             }
             else
@@ -97,14 +120,13 @@ namespace CygnetHRD.WebAPI.Controllers
         /// <returns>int : 1 for success and 0 for fail delete status.</returns>
         /// <example>DELETE ../api/user/1</example>
         /// <example>DELETE ../api/user/remove/1</example>
-        /// <example>DELETE ../api/user/delete/1</example>
         [HttpDelete("{id}", Name = "Delete")]
         [HttpDelete("remove/{id}", Name = "Remove")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id > 0)
             {
-                var data = await Task.Run(() => this.unitOfWork.Users.Delete(id));
+                var data = await mediator.Send(new DeleteUserCommand() { Id = id});
                 return this.Ok(data);
             }
             else
@@ -118,7 +140,6 @@ namespace CygnetHRD.WebAPI.Controllers
         /// <param name="user">User</param>
         /// <returns>int : 1 for success and 0 for fail update status.</returns>
         /// <example>PUT ../api/user</example>
-        /// <example>PUT ../api/user/update</example>
         /// <example>PUT ../api/user/modify</example>
         [HttpPut("{id}", Name = "Update")]
         [HttpPut("modify/{id}", Name = "Modify")]
@@ -131,7 +152,7 @@ namespace CygnetHRD.WebAPI.Controllers
                 {
                     currentUser.Id = id;
 
-                    var data = await Task.Run(() => this.unitOfWork.Users.Update(currentUser));
+                    var data = await mediator.Send(new UpdateUserCommand() { Users = currentUser });
                     return this.Ok(data);
                 }
                 else
