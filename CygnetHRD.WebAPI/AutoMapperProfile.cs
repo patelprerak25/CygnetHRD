@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using CygnetHRD.Entity.DBModel;
-using CygnetHRD.Entity.Entities;
+using CygnetHRD.Domain.DBModel;
+using CygnetHRD.Domain.Entities;
 
 namespace CygnetHRD.WebAPI
 {

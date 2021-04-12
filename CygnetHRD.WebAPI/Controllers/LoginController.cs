@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CygnetHRD.Application.Interfaces;
-using CygnetHRD.Entity.Entities;
+using CygnetHRD.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;

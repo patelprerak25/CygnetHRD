@@ -1,5 +1,5 @@
 ﻿using CygnetHRD.Application.Interfaces;
-using CygnetHRD.Entity.DBModel;
+using CygnetHRD.Domain.DBModel;
 using MediatR;
 using System;
 using System.Collections.Generic;

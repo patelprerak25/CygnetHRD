@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using CygnetHRD.Application.Interfaces;
-using CygnetHRD.Entity.DBModel;
+using CygnetHRD.Domain.DBModel;
 using MediatR;
 
 namespace CygnetHRD.Application.Users_.Commands.UpdateUser

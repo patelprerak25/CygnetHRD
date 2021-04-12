@@ -9,13 +9,13 @@ using CygnetHRD.Application.Users_.Commands.DeleteUser;
 using CygnetHRD.Application.Users_.Commands.UpdateUser;
 using CygnetHRD.Application.Users_.Queries.GetAllUser;
 using CygnetHRD.Application.Users_.Queries.GetUser;
-using CygnetHRD.Entity.DBModel;
-using CygnetHRD.Entity.Entities;
-using KendoGridParameterParser;
-using KendoGridParameterParser.Models;
+using CygnetHRD.Domain.DBModel;
+using CygnetHRD.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft;
+using Newtonsoft.Json;
 
 namespace CygnetHRD.WebAPI.Controllers
 {
@@ -41,20 +41,7 @@ namespace CygnetHRD.WebAPI.Controllers
             this.mapper = mapper;
             this.mediator = mediator;
         }
-
-        //[HttpGet]
-        //public ActionResult Index(DataSourceRequest request)
-        //{
-        //    var expression = DataSourceFilterMapHelper.RecursiveFilterExpressionBuilder(request.Filter);
-        //    var sorter = DataSourceSortMapHelper.SortExpressionBuilder(request.Sort);
-        //    AggregateResult aggr = DataSourceAggregateMapHelper.AggregateExpressionBuilder(request.Aggregate);
-
-        //    var data = this.unitOfWork.Users.GetAll();
-        //    if (data.Count() > 0)
-        //        return this.Ok(mapper.Map<List<User>>(data));
-        //    else
-        //        return this.NotFound("User doesn't exist.");
-        //}
+             
 
         /// <summary>
         /// This method use for featching all Users.

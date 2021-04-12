@@ -18,7 +18,7 @@
             <param name="unitOfWork">IUnitOfWork</param>
             <param name="configuration">IConfiguration</param>
         </member>
-        <member name="M:CygnetHRD.WebAPI.Controllers.LoginController.Login(CygnetHRD.Entity.Entities.Login)">
+        <member name="M:CygnetHRD.WebAPI.Controllers.LoginController.Login(CygnetHRD.Domain.Entities.Login)">
             <summary>
             This action method used for Login feature.
             It use User inforamtion and creates token and send back to user.
@@ -62,7 +62,7 @@
             <returns>User : User entity object.</returns>
             <example>GET ../api/user/2 .</example>
         </member>
-        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.Add(CygnetHRD.Entity.Entities.User)">
+        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.Add(CygnetHRD.Domain.Entities.User)">
             <summary>
             API call for add new User entity.
             </summary>
@@ -81,7 +81,7 @@
             <example>DELETE ../api/user/1</example>
             <example>DELETE ../api/user/remove/1</example>
         </member>
-        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.Update(System.Int32,CygnetHRD.Entity.Entities.User)">
+        <member name="M:CygnetHRD.WebAPI.Controllers.UserController.Update(System.Int32,CygnetHRD.Domain.Entities.User)">
             <summary>
             API call for update User entity.
             </summary>

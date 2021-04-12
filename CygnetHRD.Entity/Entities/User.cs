@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CygnetHRD.Entity.Entities
+namespace CygnetHRD.Domain.Entities
 {
     public class User
     {

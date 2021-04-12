@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\CygnetWorkspace\CygnetHRD\CygnetHRD.Repository\CygnetHRD.Repository.xml</DocumentationFile>
+    <DocumentationFile>D:\CygnetWorkspace\CygnetHRD\CygnetHRD.Infrastructure\CygnetHRD.Infrastructure.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygnetHRD.Entity.Entities
+namespace CygnetHRD.Domain.Entities
 {
     public class Login
     {
