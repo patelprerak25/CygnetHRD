@@ -41,7 +41,7 @@ namespace CygnetHRD.WebAPI.Controllers
             this.mapper = mapper;
             this.mediator = mediator;
         }
-             
+
 
         /// <summary>
         /// This method use for featching all Users.
@@ -113,7 +113,7 @@ namespace CygnetHRD.WebAPI.Controllers
         {
             if (id > 0)
             {
-                var data = await mediator.Send(new DeleteUserCommand() { Id = id});
+                var data = await mediator.Send(new DeleteUserCommand() { Id = id });
                 return this.Ok(data);
             }
             else

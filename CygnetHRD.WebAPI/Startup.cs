@@ -1,6 +1,7 @@
 using CygnetHRD.Application.Interfaces;
 using CygnetHRD.Repositories;
 using MediatR;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,6 +20,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CygnetHRD.Application;
+using CygnetHRD.WebAPI.Filters;
 
 namespace CygnetHRD.WebAPI
 {
@@ -47,6 +50,7 @@ namespace CygnetHRD.WebAPI
         /// <param name="services">IServiceCollection</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplication();
             //add authoentication settings for jwt token implementation
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
@@ -63,6 +67,11 @@ namespace CygnetHRD.WebAPI
                         };
                     });
 
+            services.AddMvc(opt =>
+            {
+                opt.Filters.Add(typeof(ValidatorActionFilter));
+            }).AddFluentValidation();
+
             //add database connection object and inject it to use in entity repository
             string dbConnectionString = this.Configuration.GetConnectionString("DefaultConnection");
             services.AddTransient<IDbConnection>((sp) => new SqlConnection(dbConnectionString));
@@ -72,7 +81,8 @@ namespace CygnetHRD.WebAPI
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
-            //services.AddMediatR(Assembly.GetExecutingAssembly(), typeof(ICustomerNameUpdateService).Assembly);
+            ////services.AddMediatR(Assembly.GetExecutingAssembly(), typeof(CygnetHRD.Application).Assembly);
+
 
             services.AddSwaggerGen(c =>
             {
